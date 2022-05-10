@@ -1,8 +1,8 @@
 # pai789_final_project_dev
 
-#Investigating Flood Risk and Equity in North Carolina
+# Investigating Flood Risk and Equity in North Carolina
 
-##Background
+## Background
 
 As temperatures increase, communities across the globe are expected to experience more extreme weather events. In North Carolina, the state currently experiences both coastal and inland flooding, and is expected to have more flood events due to climate change. Smaller, lower-resourced populations are specifically going to experience the brunt of climate impacts because as these communities experience more natural disasters, residents and employers leave and their tax bases dwindle, thus making it harder to fund basic services. This repository investigates Columbus County specifically, but future work can utilize the resources included as a foundation to build upon. This repository was created with the goal of helping policy makers and communities better understand their flood risk. Specifically, this repository uses data from FEMA, the state of North Carolina, and the U.S. Census Bureau to calculate: 
 
