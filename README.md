@@ -33,11 +33,13 @@ Data files within the repository are sourced from various resources. The appropr
   * You will have to create an account here to access the data: https://sdd.nc.gov
   * Once logged in, select “County” 
   
-  ![Selecting County From SDD Site](County SDD.png)
+  ![Selecting County From SDD Site](County.png)
   
   * Then select “Click Here to Download Countywide Data”
   ![Download County Data from SDD Site](LargeDataRequest.png)
   
   * From there, select “Columbus” and the selection will appear in the “Requested Areas” box
-  ![Selecting Columbus County from SDD Site](LargeDataRequest.png)
+  ![Selecting Columbus County from SDD Site](Columbus_SDD.png)
+  
+  
  
