@@ -1,6 +1,6 @@
 import geopandas as gpd
 import pandas as pd 
-import geotools3 as geotools
+import script3_geotools as geotools
 
 in_file = 'floodplain-buildings.gpkg'
 out_file = 'flood_sections_static.gpkg'

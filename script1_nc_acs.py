@@ -11,7 +11,7 @@ import pandas as pd
 
 acs_yr = 2018
 
-ifile = "NC_ACS_2018_Shells_FLD.csv"
+ifile = "./Input Files/NC_ACS_2018_Shells_FLD.csv"
 
 #%%
 

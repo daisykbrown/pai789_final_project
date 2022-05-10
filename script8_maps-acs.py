@@ -15,7 +15,7 @@ out_file = "flood_levels.gpkg"
 # setting a projection variable
 nc_epsg = 2264
 
-county_file = "../GIS/US Census County Cartographic File/cb_2019_us_county_500k.zip"
+county_file = "./Input Files/cb_2019_us_county_500k.zip"
 
 county = gpd.read_file(county_file)
 
@@ -25,7 +25,7 @@ county = county.to_crs(epsg=nc_epsg)
 
 county = county[['STATEFP', 'COUNTYFP', 'GEOID', 'NAME', 'geometry']]
 
-bg_file = "../GIS/NC Census BG Catographic File/cb_2019_37_bg_500k.zip"
+bg_file = "./Input Files/cb_2019_37_bg_500k.zip"
 
 bg = gpd.read_file(bg_file)
 

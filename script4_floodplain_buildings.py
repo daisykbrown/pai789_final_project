@@ -6,9 +6,9 @@ import os
 #  Input files
 #
 
-building_file = "Columbus_FP.gdb"
+building_file = "./Input Files/Columbus_FP.gdb"
 
-fema_file = "FEMA_Flood_HAZ_ColumbusCounty.zip"
+fema_file = "./Input Files/FEMA_Flood_HAZ_ColumbusCounty.zip"
 
 #
 #  Output file

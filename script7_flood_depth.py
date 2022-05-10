@@ -17,11 +17,11 @@ nc_epsg = 2264
 
 
 # reading in the approproate shape files for FFE
-ftp_file = "../Input Files/Columbus_FP.gdb"
+ftp_file = "Columbus_FP.gdb"
 
 # setting the projection
 
-ftp = gpd.read_file(ftp_file)
+ftp = gpd.read_file(ftp_file, layer='Columbus_FP')
 
 ftp = ftp.to_crs(epsg=nc_epsg)
 
@@ -78,8 +78,6 @@ depth2 = joined["depth2"]
 joined['flood_depth'] = depth1.where( depth1.notna(), depth2 )
 
 
-
-
 joined = joined.drop(columns=['depth1', 'depth2', 'STATIC_BFE_left'])
 
 joined.to_file(out_file, layer = "flood_depth", index=False)
@@ -101,12 +99,6 @@ class2 = class2.rename(columns={'flood_depth':'Class 2'})
 class1.to_file(out_file, layer = 'class1', index=False)
 
 class2.to_file(out_file, layer = 'class2', index=False)
-
-
-# class3 = joined.query("flood_depth == 'nan'")
-# class3 = class3[['LIDAR_HAG', 'flood_depth', 'geometry']]
-
-
 
 
 #%%

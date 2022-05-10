@@ -1,10 +1,14 @@
-# pai789_final_project_dev
+# pai789_final_project
 
 # Investigating Flood Risk and Equity in North Carolina
 
 ## Background
 
-As temperatures increase, communities across the globe are expected to experience more extreme weather events. In North Carolina, the state currently experiences both coastal and inland flooding, and is expected to have more flood events due to climate change. Smaller, lower-resourced populations are specifically going to experience the brunt of climate impacts because as these communities experience more natural disasters, residents and employers leave and their tax bases dwindle, thus making it harder to fund basic services. This repository investigates Columbus County specifically, but future work can utilize the resources included as a foundation to build upon. This repository was created with the goal of helping policy makers and communities better understand their flood risk. Specifically, this repository uses data from FEMA, the state of North Carolina, and the U.S. Census Bureau to calculate: 
+As temperatures increase, communities across the globe are expected to experience more extreme weather events. In North Carolina, the state currently experiences both coastal and inland flooding, and is expected to have more flood events due to climate change. Smaller, lower-resourced populations are specifically going to experience the brunt of climate impacts because as these communities experience more natural disasters, residents and employers leave and their tax bases dwindle, thus making it harder to fund basic services. 
+
+This repository investigates Columbus County in North Carolina, but future work can utilize the resources included as a foundation to expand to other counties in the state. The main unit of analysis is the building data found via the North Carolina Spatial Data Download. This repository was created with the goal of helping policy makers and communities better understand their flood risk as well as the communities who live near and within floodplains. 
+
+This repository uses data from Federal Emergency Management Agency (FEMA), the state of North Carolina, and the U.S. Census Bureau to calculate: 
 
 1) The expected depth of flooding (in feet) for parcels that stand in FEMA’s 1% annual flood chance zone
 
@@ -24,7 +28,33 @@ The block-group characteristics not guided by the EPA’s Environmental Justice 
 
 
 ## Folder Structure:
-All scripts will be found within folders that include the script and any input files. Each script folder will have a number in the front, which indicates the order in which the scripts should be run.
+
+### Scripts 
+All scripts will be found with the “script#_” in front of the script title. The number indicates the order in which the scripts should run. folders that include the script and any input files. 
+
+### Input Files
+Some of the input files will be found in this folder.
+
+### CSVs 
+CSVs created within the scripts live in the main repository. These include:
+  * nc-census-acs-bgs.csv
+  * nc-census-acs-tracts.csv
+  * analyze-acs-bgs-nc.csv
+  * analyze-acs-tracts-nc.csv
+  * nc_bg_tract_merged.csv
+  
+
+### Geopackages
+Geopackages created within the scripts live within the main repository. These include:
+  * floodplain-buildings.gpkg
+  * flood_sections_static.gpkg
+  * bfe-xs.gpkg
+     
+### Images
+All images used in the ReadMe file are stored in the “images” folder.
+
+###Raw
+The “raw” folder is utilized in Script1 and stores census data from Script1
 
 ## Scripts
 
@@ -34,38 +64,39 @@ The scripts of this repository do the following:
 
 #### A. Summary
 This script uses request and pandas modules of Python. The script does the following:
-Pulls appropriate demographic data from the ACS from 2018 for your desired county and state identified by the appropriate FIPS codes. These demographics will be used in script2 to calculate the appropriate demographics inspired by the EPA’s Environmental Justice Indicators. 
+Pulls appropriate demographic data from the ACS from 2018 for your desired county and state identified by the appropriate FIPS codes. These demographics will be used in Script2 to calculate the appropriate demographics inspired by the EPA’s Environmental Justice Indicators. 
 Creates two new csv files for block groups (“nc-census-acs-bgs.csv”) and tracts (“nc-census-acs-tracts.csv”). These csv files will be used in script 2
 
 #### B. Input Data
-There input data for this script:
-"NC_ACS_2018_Shells_FLD.csv" which is a csv of the desired demographic data taken from the ACS 2018 Table Shells and shortened to the appropriate demographics. The 2018 Table Shells for the ACS can be found here: https://www.census.gov/programs-surveys/acs/technical-documentation/table-shells.2018.html 
+The input data for this script includes:
+"NC_ACS_2018_Shells_FLD.csv" which is a csv of the desired demographic data taken from the ACS 2018 Table Shells and shortened to the desired demographics. The 2018 Table Shells for the ACS can be found here: https://www.census.gov/programs-surveys/acs/technical-documentation/table-shells.2018.html 
 
-### Script2: analyze-acs-nc.py
+### Script2: analyze_acs_nc.py
 
 #### A. Summary
 This script uses pandas, geopandas,and numpy modules of Python. The script does the following:
-Reads the bg and tract csvs created in script1 and calculates the demographics that will be utilized in the analyisis. The script breaks these up by block group and by tract. The tract group variables will be percentages and can therefore be assigned to the block groups.
-Merges the block group and tract level data into one csv titled "nc_bg_tract_merged.csv"
+Reads the bg and tract csvs created in Script1 and calculates the demographics that will be utilized in the analysis. The script breaks the demographics up by block group and by tract. The tract group variables will be percentages and can therefore be assigned to the block groups.
+The script then merges the block group and tract level data into one csv titled "nc_bg_tract_merged.csv"
 
 #### B. Input Data
-There input data for this script:
-nc-census-acs-bgs.csv
-nc-census-acs-tracts.csv
+The input data for this script includes:
+“nc-census-acs-bgs.csv”
+“nc-census-acs-tracts.csv”
+Both of these scripts were created in Script1
  
  
 ### Script3: geotools.py 
 
 #### A. Summary
-This script is written by Profesor Peter Wilcoxen and uses geopands and scipy.spatial and shapely.geometry modules of Python and also imports MultiPoint from shapely.geometry. The script does the following:
+This script is written by Professor Peter Wilcoxen and uses geopands and scipy.spatial and shapely.geometry modules of Python and also imports MultiPoint from shapely.geometry. The script does the following:
 Defines a module called “geotools” that will be utilized in script 5.
 
 
 ### Script4: flood_plain_buildings.py
 
 #### A. Summary
-This script was written by Peter Wilcoxen and uses geopands and os module of Python. The script does the following:
-Creates a new geopackage file titled “floodplain-buildings.gpkg” that will hold all of the QGIS layers that are used to build the floodplain.
+This script was written by Peter Wilcoxen and uses geopandas and os modules of Python. The script does the following:
+Creates a new geopackage file titled “floodplain-buildings.gpkg” that holds all of the QGIS layers that are used to build the floodplain.
 The layers in the geopackage are:
   * buildings: a layer that includes all buildings from the Columbus_FP.gd file that intersect with the floodplain
   * floodplain-bfe: a layer of the areas that do have BFE within the floodplain
@@ -78,23 +109,23 @@ The input files used in this script are:
   * 'FEMA_Flood_HAZ_ColumbusCounty.zip' which provides the FEMA Flood Zone shape files used to construct the flood zone in the county
    
 
-### Script5: flood_plain_buildings.py
+### Script5: flood_sections_static.py
 
 #### A. Summary
 
-This script was written by Peter Wilcoxen and uses geopands and pandas modules of Python as well as the geotools module created in Script3. The script uses voronois and dissolves to produces a new geopackage titled 'flood-elevation-points.gpkg'.
+This script was written by Peter Wilcoxen and uses geopands and pandas modules of Python as well as the geotools module created in Script3. The script uses voronois and dissolves to slice the floodplain into sections that correspond to the closest BFE, STATIC_BFE, and XS elevation points. The script also produces a new geopackage titled 'flood-elevation-points.gpkg'.
 
 The input file used is:
  * 'floodplain-buildings.gpkg' which is the geopackage created in Script4
 
-### Script6: join_parcel_demo.py
+### Script6: join_parcel_demo_tax.py
 
 #### A. Summary
-This script uses geopands module of  Python and geotools created in the script 3. The script does the following:
-Creates a new geopackage file titled “flood_levels.gpkg” that will hold all of the QGIS layers that will be used in the analysis. The layers created in the geopackage are:
+This script uses geopands module of Python and geotools created in the script 3. The script does the following:
 
 
 ### Script7: flood_depth.py
+
 #### A. Summary
 This script isuses geopands module of  Python and geotools created in the script 3. The script does the following:
 Creates a new geopackage file titled “flood_levels.gpkg” that will hold all of the QGIS layers that will be used in the analysis. The layers created in the geopackage are:
@@ -105,6 +136,7 @@ Creates a new geopackage file titled “flood_levels.gpkg” that will hold all 
 #### A. Summary
 This script isuses geopands module of  Python and geotools created in the script 3. The script does the following:
 Creates a new geopackage file titled “flood_levels.gpkg” that will hold all of the QGIS layers that will be used in the analysis. The layers created in the geopackage are:
+
 
 
 
@@ -125,5 +157,17 @@ Data files within the repository are sourced from various resources. The appropr
   * From there, select “Columbus” and the selection will appear in the “Requested Areas” box
   ![Selecting Columbus County from SDD Site](Columbus_SDD.png)
   
-  
- 
+  * Next select “BUILDINGS INFORMATION” and fill out your contact information
+  ![Selecting “Buildings” and filling out personal information from SDD Site](BuildingsRequest.png) 
+  * The Building Footprint data will come as a geopackage via email titled: “Columbus_FP_Info.gpkg”
+
+### FEMA Flood Hazard Layers
+  * Go to: https://www.floodmaps.fema.gov/NFHL/status.shtml
+  * Scroll down until you see “NFHL Inventory Table”
+  * Type “Columbus” in the search bar
+  ![Selecting Columbus County FEMA Flood Hazard Layers](FEMA_HAZ_Layers.png) 
+  * Select the download file for “NORTH CAROLINA”
+  * The download will be a zip file titled: “FEMA_Flood_HAZ_ColumbusCounty.zip”
+  * Two layers will be utilized and are titled:
+    * “S_FLD_HAZ_AR.shp”
+    * “S_XS.shp”
