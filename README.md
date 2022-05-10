@@ -9,15 +9,35 @@ As temperatures increase, communities across the globe are expected to experienc
 1) The expected depth of flooding (in feet) for parcels that stand in FEMA’s 1% annual flood chance zone
 
 2) Block group-level demographic characteristics that were chosen based on the Environmental Protection Agency’s (EPA) Environmental Justice Indicators. These demographics are at the block-group level and include: 
-⋅⋅* The percent of the population that is non-white hispanic
-⋅⋅* The percent of households where the household income is less than or equal to twice the federal "poverty level”
-⋅⋅* The unemployment rate
-⋅⋅* The percent of households who do not speak English or do not speak English “very well”
-⋅⋅* The percent of people age 25 or older in a block group whose education is short of a high school diploma
-⋅⋅* The percent of people who are under age 5
-⋅⋅* The percent of people who are over age 5
+  * The percent of the population that is non-white hispanic
+  * The percent of households where the household income is less than or equal to twice the federal "poverty level”
+  * The unemployment rate
+  * The percent of households who do not speak English or do not speak English “very well”
+  * The percent of people age 25 or older in a block group whose education is short of a high school diploma
+  * The percent of people who are under age 5
+  * The percent of people who are over age 5
 
 The block-group characteristics not guided by the EPA’s Environmental Justice Indicators but also included in the analysis are:
-⋅⋅* The percent of buildings occupied
-⋅⋅* The percent of buildings owner-occupied
-⋅⋅* Median Income
+  * The percent of buildings occupied
+  * The percent of buildings owner-occupied
+  * Median Income
+
+
+
+## Data Files 
+Data files within the repository are sourced from various resources. The appropriate input files will be held within the repository, but you will find instructions below on how to source the data used in this project:
+
+### North Carolina Spacial Data Download:
+
+  * The data from this site include Building Footprint data and DEM data
+  * You will have to create an account here to access the data: https://sdd.nc.gov
+  * Once logged in, select “County” 
+  
+  ![Selecting County From SDD Site](County SDD.png)
+  
+  * Then select “Click Here to Download Countywide Data”
+  ![Download County Data from SDD Site](LargeDataRequest.png)
+  
+  * From there, select “Columbus” and the selection will appear in the “Requested Areas” box
+  ![Selecting Columbus County from SDD Site](LargeDataRequest.png)
+ 
