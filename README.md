@@ -142,23 +142,23 @@ Data files within the repository are sourced from various resources. The appropr
   * You will have to create an account here to access the data: https://sdd.nc.gov
   * Once logged in, select “County” 
   
-  ![Selecting County From SDD Site](County.png)
+  ![Selecting County From SDD Site](./Images/County.png)
   
   * Then select “Click Here to Download Countywide Data”
-  ![Download County Data from SDD Site](LargeDataRequest.png)
+  ![Download County Data from SDD Site](./Images/LargeDataRequest.png)
   
   * From there, select “Columbus” and the selection will appear in the “Requested Areas” box
-  ![Selecting Columbus County from SDD Site](Columbus_SDD.png)
+  ![Selecting Columbus County from SDD Site](.Images/Columbus_SDD.png)
   
   * Next select “BUILDINGS INFORMATION” and fill out your contact information
-  ![Selecting “Buildings” and filling out personal information from SDD Site](BuildingsRequest.png) 
+  ![Selecting “Buildings” and filling out personal information from SDD Site](.Images/BuildingsRequest.png) 
   * The Building Footprint data will come as a geopackage via email titled: “Columbus_FP_Info.gpkg”
 
 ### FEMA Flood Hazard Layers
   * Go to: https://www.floodmaps.fema.gov/NFHL/status.shtml
   * Scroll down until you see “NFHL Inventory Table”
   * Type “Columbus” in the search bar
-  ![Selecting Columbus County FEMA Flood Hazard Layers](FEMA_HAZ_Layers.png) 
+  ![Selecting Columbus County FEMA Flood Hazard Layers](.Images/FEMA_HAZ_Layers.png) 
   * Select the download file for “NORTH CAROLINA”
   * The download will be a zip file titled: “FEMA_Flood_HAZ_ColumbusCounty.zip”
   * Two layers will be utilized and are titled:
@@ -168,4 +168,4 @@ Data files within the repository are sourced from various resources. The appropr
 ### Columbus County Tax Data
   * Go to: https://mangomap.com/columbusmis/data/b8123278-d6a7-11e7-98bc-06765ea3034e/parcels
 * Select the SHP icon with the down arrow to download the shapefiles of each parcel
-![Downloading Columbus County Tax Parcel Shapefiles](ColumbusTaxParcels.png)
+![Downloading Columbus County Tax Parcel Shapefiles](.Images/ColumbusTaxParcels.png)
