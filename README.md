@@ -50,7 +50,7 @@ All input files will be found in this folder.
 All images used in the ReadMe file are stored in the “Images” folder.
 
 ### Raw
-The “raw” folder is utilized in Script1 and stores census data from Script1
+The “raw” folder is utilized in Script1 and stores census data from Script1.
 
 ## Scripts
 
@@ -60,38 +60,47 @@ Descriptions of each script in this repository can be found below.
 
 #### A. Summary
 This script uses request and pandas modules of Python. The script does the following:
-Pulls appropriate demographic data from the ACS from 2018 for your desired county and state identified by the appropriate FIPS codes. These demographics will be used in Script2 to calculate the appropriate demographics inspired by the EPA’s Environmental Justice Indicators. 
+
+Pulls appropriate demographic data from the ACS from 2018 for Columbus County, North Carolina identified by the appropriate FIPS codes. These demographics will be used in Script2 to calculate the appropriate demographics inspired by the EPA’s Environmental Justice Indicators. 
+
 Creates two new csv files for block groups (“nc-census-acs-bgs.csv”) and tracts (“nc-census-acs-tracts.csv”). These csv files will be used in script 2
 
 #### B. Input Data
 The input data for this script includes:
-"NC_ACS_2018_Shells_FLD.csv" which is a csv of the desired demographic data taken from the ACS 2018 Table Shells and shortened to the desired demographics. The 2018 Table Shells for the ACS can be found here: https://www.census.gov/programs-surveys/acs/technical-documentation/table-shells.2018.html 
+ * "NC_ACS_2018_Shells_FLD.csv" which is a csv of the desired demographic data taken from the ACS 2018 Table Shells and shortened to the appropriate demographics. The 2018 Table Shells for the ACS can be found here: https://www.census.gov/programs-surveys/acs/technical-documentation/table-shells.2018.html 
 
 ### Script2: analyze_acs_nc.py
 
 #### A. Summary
 This script uses pandas, geopandas,and numpy modules of Python. The script does the following:
-Reads the bg and tract csvs created in Script1 and calculates the demographics that will be utilized in the analysis. The script breaks the demographics up by block group and by tract. The tract group variables will be percentages and can therefore be assigned to the block groups.
-The script then merges the block group and tract level data into one csv titled "nc_bg_tract_merged.csv"
+
+Reads the bg and tract csvs created in Script1 and calculates the demographics that will be utilized in the analysis. 
+
+Breaks the demographics up by block group and by tract. The tract group variables will be percentages and can therefore be assigned to the block groups.
+
+Merges the block group and tract level data into one csv titled "nc_bg_tract_merged.csv"
 
 #### B. Input Data
 The input data for this script includes:
-“nc-census-acs-bgs.csv”
-“nc-census-acs-tracts.csv”
+ * “nc-census-acs-bgs.csv”
+ * “nc-census-acs-tracts.csv”
+
 Both of these scripts were created in Script1
  
  
 ### Script3: geotools.py 
 
 #### A. Summary
-This script is written by Professor Peter Wilcoxen and uses geopandas and scipy.spatial and shapely.geometry modules of Python and also imports MultiPoint from shapely.geometry. The script does the following:
-Defines a module called “geotools” that will be utilized in script 5.
+This script is written by Peter Wilcoxen and uses geopandas, shapely.validation, matplotlib.pyplot and shapely.geometry, shutil, and time modules of Python and also imports shapely.geometry from Point, MultiPoint. The script does the following:
+
+Defines a module called “script3_geotools” that will be utilized in script 5 to construct the floodplain.
 
 
 ### Script4: flood_plain_buildings.py
 
 #### A. Summary
 This script was written by Peter Wilcoxen and uses geopandas and os modules of Python. The script does the following:
+
 Creates a new geopackage file titled “floodplain-buildings.gpkg” that holds all of the QGIS layers that are used to build the floodplain.
 The layers in the geopackage are:
   * buildings: a layer that includes all buildings from the Columbus_FP.gd file that intersect with the floodplain
@@ -109,7 +118,11 @@ The input files used in this script are:
 
 #### A. Summary
 
-This script was written by Peter Wilcoxen and uses geopandas and pandas modules of Python as well as the geotools module created in Script3. The script uses voronois and dissolves to slice the floodplain into sections that correspond to the closest BFE, STATIC_BFE, and XS elevation points. The script also produces a new geopackage titled 'flood-elevation-points.gpkg'.
+This script was written by Peter Wilcoxen and uses geopandas and pandas modules of Python as well as the geotools module created in Script3. The script does the following:
+
+Uses voronois and dissolves to slice the floodplain into sections that correspond to the closest BFE, STATIC_BFE, and XS elevation points. 
+
+Produces a new geopackage titled 'flood-elevation-points.gpkg'.
 
 The input file used is:
  * 'floodplain-buildings.gpkg' which is the geopackage created in Script4
@@ -117,11 +130,14 @@ The input file used is:
 ### Script6: join_parcel_demo_tax.py
 
 #### A. Summary
-This script uses geopandas, pandas, and os modules of Python and geotools created in the script 3. The script does the following:
-Joins the Columbus_FP data, which holds information like the LIDAR_LAG value that is used to calculate the expected flood depth, with the block group level demographics calculated in Script2, and tax parcel information found from Columbus County. This joined spatial data is put into a layer called “ftp_demo” that lives in “flood_levels.gpkg.”
+This script uses geopandas, pandas, and os modules of Python and script3_geotools created in the script 3. The script does the following:
+
+Joins the Columbus_FP data, which holds information like the LIDAR_LAG value that is used to calculate the expected flood depth, with the block group level demographics calculated in Script2, and tax parcel information found from Columbus County. 
+
+Creates a new geo layer in “flood_levels.gpkg” with the joined spatial data called “ftp_demo_tax.” 
 
 The input file used is:
- * ‘Columbus_FP_Info.gpkg’ which has a layer called ‘Building_Centroids’ that corresponds to the previous Columbus_FP data used in Script4 
+ * ‘Columbus_FP_Info.gpkg’ which has a layer called ‘Building_Centroids’ that is the centroid version of the data used in Script4 
  * ‘nc_bg_tract_merged.csv’ which was created in Script2 and holds the desired demographic characteristics guided by the EPA’s environmental Justice Indicators.
  * ‘parcels.shp’ which is from Columbus County and holds relevant tax information, such as the address and tax value of a parcel.
 
@@ -129,8 +145,10 @@ The input file used is:
 
 #### A. Summary
 This script uses pandas, geopandas, matplotlib.pyplot, and seaborn modules of Python. The script does the following:
- * Calculates the expected flood depth in feet for each building centroid in the floodplain
- * Creates two histograms: one that shows all of the negative flood depths and one that plots all of the flood depths calculated
+
+ Calculates the expected flood depth in feet for each building centroid in the floodplain.
+ 
+ Creates two histograms: one that shows all of the negative flood depths and one that plots all of the flood depths calculated.
 
 The input file used is:
  * ‘Columbus_FP_Info.gpkg’ which has a layer called ‘Building_Centroids’ that corresponds to the previous Columbus_FP data used in Script4 
@@ -141,6 +159,7 @@ The input file used is:
 
 #### A. Summary
 This script uses pandas, geopandas, and matplotlib.pyplot modules of  Python. The script does the following:
+
 Creates various maps of the county broken out by the block group level demographics and has the floodplain overlaid. These maps can be utilized to get a sense of what types of communities the floodplain lies on.
 
 
@@ -152,7 +171,7 @@ This script uses script3_geotools module created by Professor Peter Wilcoxen. Th
 Turns the appropriate geodata into shapefiles that are used for the Tableau visualization tool.
 
 ## Data Files 
-Data files within the repository are sourced from various resources. The appropriate input files will be held within the repository, but you will find instructions below on how to source the data used in this project:
+Data files within the repository are sourced from various resources. The appropriate input files will be held within the repository under the "Input Files" folder, but you will find instructions below on how to source the data used in this project:
 
 ### North Carolina Spatial Data Download:
 
