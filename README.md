@@ -32,6 +32,12 @@ The output created with the scripts has been put into a Tableau Public project t
 
 The Tableau project shows information about individual building centroids, including the block-group characteristics described above, the expected flood depth, and the owner's address. Some of the addresses will have a question mark and there was no attempt in this analysis to infer what those question marks should be.
 
+The tool can be filtered by "Low," "High," and "Not in FP."
+"Low" indicates that a building does not have an expected flood depth. "High" indicates that a building does have an expected flood depth. "Not in FP" indicates that building is not in the floodplain.
+
+![Tableau Filter Legend](./Images/TableauFilters.png)
+
+
 ## Folder Structure
 
 ### Scripts 
