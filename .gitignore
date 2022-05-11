@@ -5,3 +5,5 @@ Input Files/columbus_parcels_NCONE/nc_columbus_parcels_poly.dbf
 Input Files/columbus_parcels_NCONE/nc_columbus_parcels_pt.dbf
 __pycache__/script3_geotools.cpython-39.pyc
 flood_sections_static.gpkg
+flood_levels.gpkg-wal
+flood_levels.gpkg-shm

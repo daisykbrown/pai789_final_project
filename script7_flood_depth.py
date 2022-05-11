@@ -16,12 +16,12 @@ out_file = "flood_levels.gpkg"
 nc_epsg = 2264
 
 
-# reading in the approproate shape files for FFE
-ftp_file = "Columbus_FP.gdb"
+# reading in the approproate shape files for LIDAR_LAG
+ftp_file = "./Input Files/Columbus_FP_Info.gpkg"
 
-# setting the projection
+# setting the layer and projection for the footprint file
 
-ftp = gpd.read_file(ftp_file, layer='Columbus_FP')
+ftp = gpd.read_file(ftp_file, layer='Building_Centroids') 
 
 ftp = ftp.to_crs(epsg=nc_epsg)
 
