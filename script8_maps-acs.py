@@ -120,7 +120,7 @@ def draw_map(data,geo,var,title):
 #  Plot everything
 #
 
-elev = gpd.read_file("flood_levels.gpkg", layer = "flood_elev")
+elev = gpd.read_file("flood_sections_static.gpkg", layer = "sections")
 
 for geo in ['tracts','bgs']:
 

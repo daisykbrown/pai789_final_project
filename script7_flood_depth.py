@@ -56,9 +56,6 @@ joined["depth1"] = round(joined['ELEV'] - joined['LIDAR_LAG'],2)
 
 depth1 = joined["depth1"]
 
-#calibrate_static = 3.08
-
-#joined["depth2"] = round(joined['STATIC_BFE'] - (joined['FFE'] - calibrate_static),2)
 
 joined = joined.sjoin(static, how='left', predicate='within')
 
@@ -81,24 +78,6 @@ joined['flood_depth'] = depth1.where( depth1.notna(), depth2 )
 joined = joined.drop(columns=['depth1', 'depth2', 'STATIC_BFE_left'])
 
 joined.to_file(out_file, layer = "flood_depth", index=False)
-
-#%%
-
-# setting up classes to distinguish between positive and negative flood depths
-# these classes can be used in the Tableau tool to easily distinguish between values
-
-class1 = joined.query("flood_depth < 0")
-class1 = class1[['LIDAR_LAG', 'flood_depth', 'geometry']]
-class1 = class1.rename(columns={'flood_depth':'Class 1'})
-
-
-class2 = joined.query("flood_depth >= 0")
-class2 = class2[['LIDAR_LAG', 'flood_depth', 'geometry']]
-class2 = class2.rename(columns={'flood_depth':'Class 2'})
-
-class1.to_file(out_file, layer = 'class1', index=False)
-
-class2.to_file(out_file, layer = 'class2', index=False)
 
 
 #%%
