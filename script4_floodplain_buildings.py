@@ -1,4 +1,7 @@
-"../Input Files/Columbus_FP.gdb"
+"""
+@author: Peter Wilcoxen
+"""
+
 import geopandas as gpd
 import os
 

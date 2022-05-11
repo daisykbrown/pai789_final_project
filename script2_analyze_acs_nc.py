@@ -31,18 +31,19 @@ for geo in ['tracts','bgs']:
     #  Calculations supported for block groups and tracts
     #
     
+    #  Calculating the percent of folks who are nonwhite
     res['pop_all'] = raw['B02001_001E']
     res['pop_white'] = raw['B02001_002E']
-    res['pop_nonwhite_pct'] = 100*(1-res['pop_white']/res['pop_all'])
+    res['pop_nonwhite_pct'] = round(100*(1-res['pop_white']/res['pop_all']),1)
     
     #  Calculations for occupied and vacant buildings
     res['occ_all'] = raw['B25002_001E']
     res['occ_occupied'] = raw['B25002_002E']
-    res['occ_occupied_pct'] = 100*(res['occ_occupied']/res['occ_all'])
+    res['occ_occupied_pct'] = round(100*(res['occ_occupied']/res['occ_all']),1)
     
     #   Calculations for owner occupied buildings
     res["tenure"] = raw['B25003_001E']
-    res['own_occupied_pct'] = 100* raw["B25003_002E"] / res['tenure'] 
+    res['own_occupied_pct'] = round(100* raw["B25003_002E"] / res['tenure'],1)
     
    
     #  That's it if we're doing block groups. Subsequent calculations
@@ -53,14 +54,14 @@ for geo in ['tracts','bgs']:
     #  Age below 5
     res["age_total"] = raw["B01001_001E"]
     res["age_below5"] = raw["B01001_003E"] + raw["B01001_027E"]
-    res["age_below5_pct"] =  100* res["age_below5"] / res["age_total"]
+    res["age_below5_pct"] =  round(100* res["age_below5"] / res["age_total"],1)
     
     #  Age above 65
     res["age_above65"] = raw["B01001_020E"] + raw["B01001_021E"] + raw["B01001_022E"] 
     + raw["B01001_023E"] +  raw["B01001_024E"] + raw["B01001_025E"] + raw["B01001_044E"]
     + raw["B01001_045E"] + raw["B01001_046E"] + raw["B01001_047E"] + raw["B01001_048E"] 
     + raw["B01001_049E"]
-    res["age_above65_pct"] = 100* res["age_above65"] /  res["age_total"]
+    res["age_above65_pct"] = round(100* res["age_above65"] /  res["age_total"],1)
   
     
     #   Median Income
@@ -78,13 +79,13 @@ for geo in ['tracts','bgs']:
     
     res['ed_highschool_GED'] = raw['B15003_017E'] + raw['B15003_018E']
     res['ed_some_college_plus'] =  res['ed_all']- res['ed_less_highschool']- res['ed_highschool_GED']
-    res['ed_highschool_below_pct'] = 100*((res['ed_highschool_GED']+res['ed_less_highschool'])/ res['ed_all'])
+    res['ed_highschool_below_pct'] = round(100*((res['ed_highschool_GED']+res['ed_less_highschool'])/ res['ed_all']),1)
     
     
     # EMPLOYMENT STATUS FOR THE POPULATION 16 YEARS AND OVER
     res['employ_total'] = raw["B23025_001E"]
     res["unemployed"] = raw["B23025_005E"]
-    res['unemployed_pct'] = 100* res["unemployed"] / res['employ_total']
+    res['unemployed_pct'] = round(100* res["unemployed"] / res['employ_total'],1)
     
     res = res[['pop_nonwhite_pct',
                'occ_occupied_pct', 
@@ -111,7 +112,7 @@ for geo in ['tracts','bgs']:
     res["povinc_ratio_above2"] = raw["B17026_010E"] + raw["B17026_011E"] + raw["B17026_012E"]
     + raw["B17026_013E"]
     res["povinc_ratio_below2"] = res["povinc_ratio_total"] - res["povinc_ratio_above2"]
-    res["pct_povinc_below2"] = 100* res["povinc_ratio_below2"] / res["povinc_ratio_total"]
+    res["pct_povinc_below2"] = round(100* res["povinc_ratio_below2"] / res["povinc_ratio_total"],1)
    
    
     #All English Proficiency
@@ -120,7 +121,7 @@ for geo in ['tracts','bgs']:
     res['all_eng_primary'] = raw['B06007_002E']
     res['all_eng_second_good'] = raw['B06007_004E'] + raw['B06007_007E']
     res['all_eng_second_poor'] = raw['B06007_005E'] + raw['B06007_008E']
-    res['pct_limited_eng'] = 100*res['all_eng_second_poor']/ res['all_eng_all']
+    res['pct_limited_eng'] = round(100*res['all_eng_second_poor']/ res['all_eng_all'],1)
     
     
     #
@@ -136,6 +137,8 @@ for geo in ['tracts','bgs']:
     
 
 #%%
+
+# merging the bg and tract csvs together
 
 bg = pd.read_csv('analyze-acs-bgs-nc.csv')
 

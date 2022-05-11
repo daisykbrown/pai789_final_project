@@ -33,7 +33,7 @@ The output created with the scripts has been put into a Tableau Public project t
 ## Folder Structure:
 
 ### Scripts 
-All scripts will be found with the “script#_” in front of the script title. The number indicates the order in which the scripts should run. folders that include the script and any input files. 
+All scripts will be found with “script[#]...” in front of the script title. The number indicates the order in which the scripts should run. folders that include the script and any input files. 
 
 ### Input Files
 All input files will be found in this folder, except for “NC_ACS_2018_Shells_FLD.csv” which will be found in the main repository and is used in Script1.

@@ -7,6 +7,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import script3_geotools
 
 
 # setting the output file
@@ -74,11 +75,22 @@ depth2 = joined["depth2"]
 
 joined['flood_depth'] = depth1.where( depth1.notna(), depth2 )
 
+joined['Class'] = joined['flood_depth'] > 0
+joined['Class'] = joined['Class'].replace({True:"Low", False: "High"})
+joined['Class'] = joined['Class'].where(joined['flood_depth'].notna(), "Not FP")
+
+joined['Water Level'] = joined['flood_depth'].apply(lambda x: f"{x:.1f} ft")
+joined['Water Level'] = joined['Water Level'].where(joined['Class']=='Low', 'Apparently above flood level')
+joined['Water Level'] = joined['Water Level'].where(joined['Class']!='Not FP', 'Not in floodplain')
 
 joined = joined.drop(columns=['depth1', 'depth2', 'STATIC_BFE_left'])
 
 joined.to_file(out_file, layer = "flood_depth", index=False)
 
+
+#%%
+
+# making shapefiles
 
 #%%
 
