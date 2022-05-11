@@ -7,7 +7,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import script3_geotools
+import script3_geotools as geotools
 
 
 # setting the output file
@@ -92,6 +92,7 @@ joined.to_file(out_file, layer = "flood_depth", index=False)
 
 # making shapefiles
 
+joined = geotools.to_shapefile(joined,"Flood_Depth.zip")
 #%%
 
 # drawing a histogram of negative of negative values 
