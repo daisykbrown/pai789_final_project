@@ -6,7 +6,7 @@
 
 As temperatures increase, communities across the globe are expected to experience more extreme weather events. In North Carolina, the state currently experiences both coastal and inland flooding, and is expected to have more flood events due to climate change. Smaller, lower-resourced populations are specifically going to experience the brunt of climate impacts because as these communities experience more natural disasters, residents and employers leave and their tax bases dwindle, thus making it harder to fund basic services. 
 
-This repository investigates Columbus County in North Carolina, but future work can utilize the resources included as a foundation to expand to other counties in the state. The main unit of analysis is the building data found via the North Carolina Spatial Data Download. This repository was created with the goal of helping policy makers and communities better understand their flood risk as well as the communities who live near and within floodplains. 
+This repository investigates Columbus County in North Carolina, but future work can utilize the resources included as a foundation to expand to other counties in the state. The main unit of analysis is the building centroid data found via the North Carolina Spatial Data Download, which is explained in further detail below. This repository was created with the goal of helping policy makers and communities better understand their flood risk as well as the communities who live near and within floodplains. 
 
 This repository uses data from Federal Emergency Management Agency (FEMA), the state of North Carolina, and the U.S. Census Bureau to calculate: 
 
@@ -30,23 +30,25 @@ The block-group characteristics not guided by the EPA’s Environmental Justice 
 
 The output created with the scripts has been put into a Tableau Public project that can be found here: https://public.tableau.com/app/profile/daisy5195/viz/NC_Columbus_County_Flood_Depths/Sheet1?publish=yes
 
-## Folder Structure:
+The Tableau project shows information about individual building centroids, including the block-group characteristics described above, the expected flood depth, and the owner's address. Some of the addresses will have a question mark and there was no attempt in this analysis to infer what those question marks should be.
+
+## Folder Structure
 
 ### Scripts 
 All scripts will be found with “script[#]...” in front of the script title. The number indicates the order in which the scripts should run. folders that include the script and any input files. 
 
 ### Input Files
-All input files will be found in this folder, except for “NC_ACS_2018_Shells_FLD.csv” which will be found in the main repository and is used in Script1.
+All input files will be found in this folder.
 
 ### Images
-All images used in the ReadMe file are stored in the “images” folder.
+All images used in the ReadMe file are stored in the “Images” folder.
 
-###Raw
+### Raw
 The “raw” folder is utilized in Script1 and stores census data from Script1
 
 ## Scripts
 
-The scripts of this repository do the following:
+Descriptions of each script in this repository can be found below.
 
 ### Script1: nc_acs.py
 
@@ -135,6 +137,13 @@ The input file used is:
 This script uses pandas, geopandas, and matplotlib.pyplot modules of  Python. The script does the following:
 Creates various maps of the county broken out by the block group level demographics and has the floodplain overlaid. These maps can be utilized to get a sense of what types of communities the floodplain lies on.
 
+
+### Script9: shapefiles.py
+
+#### A. Summary
+This script uses script3_geotools module created by Professor Peter Wilcoxen. The script does the following:
+
+Turns the appropriate geodata into shapefiles that are used for the Tableau visualization tool.
 
 ## Data Files 
 Data files within the repository are sourced from various resources. The appropriate input files will be held within the repository, but you will find instructions below on how to source the data used in this project:

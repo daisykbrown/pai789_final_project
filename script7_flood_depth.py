@@ -7,7 +7,6 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import script3_geotools as geotools
 
 
 # setting the output file
@@ -87,12 +86,6 @@ joined = joined.drop(columns=['depth1', 'depth2', 'STATIC_BFE_left'])
 
 joined.to_file(out_file, layer = "flood_depth", index=False)
 
-
-#%%
-
-# making shapefiles
-
-joined = geotools.to_shapefile(joined,"Flood_Depth.zip")
 
 #%%
 
