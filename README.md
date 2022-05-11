@@ -26,6 +26,9 @@ The block-group characteristics not guided by the EPA’s Environmental Justice 
   * The percent of buildings owner-occupied
   * Median Income
 
+## Tableau
+
+The output created with the scripts has been put into a Tableau Public project that can be found here: https://public.tableau.com/app/profile/daisy5195/viz/NC_Columbus_County_Flood_Depths/Sheet1?publish=yes
 
 ## Folder Structure:
 
